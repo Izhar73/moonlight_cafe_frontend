@@ -1,0 +1,344 @@
+/* 🌙 MoonLight Cafe Admin Panel Theme (Enhanced Full Version) */
+
+/* Reset + Font */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f7f8fa;
+  color: #1e293b;
+}
+
+/* 📦 Layout Container */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* 🧭 Sidebar */
+.sidebar {
+  width: 240px;
+  background: linear-gradient(180deg, #0f172a, #1e293b);
+  color: white;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s ease;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+
+.sidebar:hover {
+  width: 260px;
+  background: linear-gradient(180deg, #1a2238, #2c3654);
+  box-shadow: 0 0 20px rgba(255, 138, 5, 0.2);
+}
+
+.sidebar-title {
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  color: #ff8a05;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+}
+
+/* 🌐 Sidebar Navigation */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-nav a,
+.dropdown-toggle {
+  color: #f3f4f6;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-nav a:hover,
+.dropdown-toggle:hover {
+  background: rgba(255, 138, 5, 0.2);
+  color: #fff;
+  transform: translateX(5px);
+}
+
+/* 📂 Dropdown Styles */
+.dropdown-menu {
+  margin-left: 10px;
+  padding-left: 15px;
+  border-left: 2px solid #ff8a05;
+  display: flex;
+  flex-direction: column;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🧩 Main Content */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f9fafb;
+  transition: all 0.3s ease;
+}
+
+/* 🔝 Header */
+.dashboard-header {
+  background: linear-gradient(90deg, #0f172a, #1e293b);
+  color: #ff8a05;
+  padding: 20px 30px;
+  font-size: 22px;
+  font-weight: 600;
+  border-bottom: 3px solid #ff5200;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-shadow: 0 0 8px rgba(255, 138, 5, 0.4);
+}
+
+/* 🧭 Breadcrumb container */
+.breadcrumb-container {
+  background-color: #0f172a;
+  padding: 12px 30px;
+  color: white;
+  border-bottom: 2px solid #ff5200;
+  margin-top: 0;
+}
+
+.breadcrumb-container a {
+  color: #ff8a05;
+  text-decoration: none;
+  font-weight: 500;
+  margin: 0 5px;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb-container a:hover {
+  color: #ffd699;
+}
+
+.breadcrumb-container span {
+  color: #fff;
+}
+
+/* 🧾 Body Section */
+.dashboard-body {
+  flex-grow: 1;
+  padding: 25px;
+  animation: fadeIn 0.4s ease;
+}
+
+/* 🎞️ Card Styles */
+.card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(255, 138, 5, 0.3);
+}
+
+/* ✨ Tables */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  background: #ff5200;
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table tr:hover {
+  background: rgba(255, 82, 0, 0.05);
+  transition: background 0.3s ease;
+}
+
+/* 🧮 Buttons */
+.btn {
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  padding: 8px 16px;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #ff8a05, #ff5200);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 138, 5, 0.4);
+}
+
+.btn-danger {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-danger:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+}
+
+/* 🌈 Info / Success / Warning Buttons */
+.btn-success {
+  background: #16a34a;
+  color: white;
+}
+.btn-success:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(22, 163, 74, 0.4);
+}
+
+.btn-warning {
+  background: #f59e0b;
+  color: white;
+}
+.btn-warning:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+}
+
+/* 💡 Placeholder Loading Animation */
+.placeholder {
+  background: linear-gradient(90deg, #f1f1f1 25%, #e5e5e5 50%, #f1f1f1 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+  height: 20px;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* 🖱️ Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #ff8a05;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+/* 🌙 Dark Mode Toggle + Stat Animation Dashboard */
+
+.dashboard-body {
+  transition: all 0.3s ease-in-out;
+}
+
+.brand-text {
+  color: #ff5200;
+}
+
+.dashboard-banner {
+  width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* 💡 Stat Cards */
+.stat-card {
+  transition: all 0.4s ease;
+  border-top: 4px solid transparent;
+  animation: fadeIn 0.8s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* 🌓 Dark Mode */
+.dark-mode {
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+.dark-mode .stat-card {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+
+.dark-mode .text-muted {
+  color: #cbd5e1 !important;
+}
+
+.dark-mode .brand-text {
+  color: #ff8a05;
+}
+
+/* 🌗 Toggle Button */
+.btn-toggle-mode {
+  background: linear-gradient(90deg, #ff8a05, #ff5200);
+  color: white;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-toggle-mode:hover {
+  transform: scale(1.05);
+}
+
+/* ✨ Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 🪄 Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 🧍 Footer */
+.footer {
+  text-align: center;
+  padding: 12px;
+  background: #1e293b;
+  color: #f3f4f6;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  margin-top: auto;
+  border-top: 2px solid #ff5200;
+}

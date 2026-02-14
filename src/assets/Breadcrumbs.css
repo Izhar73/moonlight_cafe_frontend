@@ -1,0 +1,46 @@
+/* Fix spacing between page title and breadcrumb */
+.breadcrumb-container {
+  background-color: #0f172a;
+  padding: 12px 30px;
+  color: white;
+  border-bottom: 2px solid #ff5200;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* 👈 adds perfect spacing between title and Home link */
+}
+
+.breadcrumb-container strong {
+  color: #ff8a05;
+  font-size: 20px;
+  font-weight: 600;
+}
+.breadcrumb-container {
+  animation: slideIn 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.breadcrumb-container a {
+  color: #ff8a05;
+  text-decoration: none;
+  font-weight: 500;
+  margin: 0 5px;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb-container a:hover {
+  color: #ffd699;
+}
+
+.breadcrumb-container span {
+  color: #fff;
+}
