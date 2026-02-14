@@ -32,27 +32,31 @@ export default function UserRegister() {
       password: "",
     },
     validationSchema,
-    onSubmit: async (values) => {
-      console.log("Register Request:", values);
+    onSubmit: async (values, { setSubmitting }) => {
+      try {
+        const response = await postMethod("Registeration/register", {
+          Name: values.fullname,
+          Mobile: values.contactno,
+          Email: values.email,
+          Address: values.address,
+          UserName: values.username,
+          Password: values.password,
+        });
 
-      const response = await postMethod("Registeration/register", {
-        Name: values.fullname,
-        Mobile: values.contactno,
-        Email: values.email,
-        Address: values.address,
-        UserName: values.username,
-        Password: values.password,
-      });
+        if (response?.Status === "OK") {
+          localStorage.setItem("FullName", values.fullname);
+          localStorage.setItem("UserName", values.username);
 
-      console.log("Register Response:", response);
-
-      if (response.Status === "OK") {
-        localStorage.setItem("FullName", values.fullname);
-        localStorage.setItem("UserName", values.username);
-        alert("Registration Successful!");
-        navigate("/Login");
-      } else {
-        alert(response.Message || "Registration Failed!");
+          alert("✅ Registration Successful!");
+          navigate("/Login");
+        } else {
+          alert(response?.Message || "Registration Failed!");
+        }
+      } catch (error) {
+        console.error("Registration error:", error);
+        alert("Something went wrong. Please try again.");
+      } finally {
+        setSubmitting(false);
       }
     },
   });
@@ -81,11 +85,12 @@ export default function UserRegister() {
 
         <form onSubmit={formik.handleSubmit}>
           {["fullname", "contactno", "email", "address", "username", "password"].map(
-            (field, i) => (
-              <div className="mb-3" key={i}>
+            (field) => (
+              <div className="mb-3" key={field}>
                 <label className="form-label text-capitalize">
                   {field.replace(/no/, " No")}
                 </label>
+
                 <input
                   type={field === "password" ? "password" : "text"}
                   name={field}
@@ -99,6 +104,7 @@ export default function UserRegister() {
                   onBlur={formik.handleBlur}
                   placeholder={`Enter your ${field}`}
                 />
+
                 {formik.touched[field] && formik.errors[field] && (
                   <div className="invalid-feedback">
                     {formik.errors[field]}
@@ -110,6 +116,7 @@ export default function UserRegister() {
 
           <button
             type="submit"
+            disabled={formik.isSubmitting}
             className="w-100"
             style={{
               background: "linear-gradient(90deg, #ff7a00, #ff5200)",
@@ -118,10 +125,9 @@ export default function UserRegister() {
               padding: "10px",
               borderRadius: "25px",
               fontWeight: "600",
-              transition: "all 0.3s ease",
             }}
           >
-            Register
+            {formik.isSubmitting ? "Registering..." : "Register"}
           </button>
         </form>
 
