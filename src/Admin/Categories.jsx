@@ -4,17 +4,15 @@ import { categorySchema } from "../Schema";
 import { deleteMethod, getMethod, postMethod, putMethod } from "../APIService";
 
 export default function Categories() {
-  // 🔒 ALWAYS initialize with defined values
   const [initValue, setInitValue] = useState({
     Category: "",
     Description: "",
     Type: "Veg",
-    id: null,       // 🔥 Firestore doc ID
+    id: null,
   });
 
   const [categories, setCategories] = useState([]);
 
-  // ✅ Reset Form
   const resetForm = () => {
     setInitValue({
       Category: "",
@@ -24,7 +22,6 @@ export default function Categories() {
     });
   };
 
-  // ✅ Formik
   const formik = useFormik({
     initialValues: initValue,
     validationSchema: categorySchema,
@@ -39,12 +36,9 @@ export default function Categories() {
       try {
         let response;
 
-        // ✅ CREATE
         if (!values.id) {
           response = await postMethod("category/save", payload);
-        }
-        // ✅ UPDATE (Firestore doc id)
-        else {
+        } else {
           response = await putMethod(`category/update/${values.id}`, payload);
         }
 
@@ -63,7 +57,6 @@ export default function Categories() {
 
   const { handleBlur, handleChange, handleSubmit, values, errors } = formik;
 
-  // ✅ Load Categories
   const getData = async () => {
     try {
       const res = await getMethod("category/list");
@@ -73,17 +66,15 @@ export default function Categories() {
     }
   };
 
-  // ✅ Edit Category
   const getDetail = (data) => {
     setInitValue({
       Category: data.category_name || "",
       Description: data.description || "",
       Type: data.type || "Veg",
-      id: data.id,            // 🔥 Firestore doc ID
+      id: data._id, // ✅ IMPORTANT FIX
     });
   };
 
-  // ✅ Delete Category
   const deleteCategory = async (id) => {
     if (!id) return;
 
@@ -91,7 +82,9 @@ export default function Categories() {
       try {
         const res = await deleteMethod(`category/delete/${id}`);
         if (res.Status === "OK") {
-          setCategories((prev) => prev.filter((c) => c.id !== id));
+          setCategories((prev) =>
+            prev.filter((c) => c._id !== id)
+          );
         }
       } catch (err) {
         console.error("Delete error:", err);
@@ -167,7 +160,6 @@ export default function Categories() {
             </div>
           </div>
 
-          {/* ✅ Table */}
           <div className="table-responsive mt-4">
             <table className="table table-bordered text-center align-middle">
               <thead className="table-light">
@@ -181,7 +173,7 @@ export default function Categories() {
               <tbody>
                 {categories.length > 0 ? (
                   categories.map((o) => (
-                    <tr key={o.id}> {/* 🔥 UNIQUE KEY */}
+                    <tr key={o._id}>
                       <td>{o.category_name}</td>
                       <td>{o.description}</td>
                       <td>
@@ -202,7 +194,7 @@ export default function Categories() {
                         </button>
                         <button
                           className="btn btn-danger btn-sm"
-                          onClick={() => deleteCategory(o.id)}
+                          onClick={() => deleteCategory(o._id)}
                         >
                           Delete
                         </button>
